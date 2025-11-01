@@ -1,5 +1,4 @@
 require("dotenv").config();
-const serverless = require("serverless-http");
 const express = require("express");
 const connectDB = require("./config/database");
 const cookieParser = require("cookie-parser");
@@ -34,13 +33,11 @@ connectDB()
       `✅ DATABASE Is Connected Successfully!! HOST: ${instance.connection.host}`
     );
     console.log(`📦 Using database: ${instance.connection.name}`);
-    // app.listen(port, () => {
-    //   console.log(`🚀 SERVER is successfully listening on PORT: ${port}`);
-    // });
+    app.listen(port, () => {
+      console.log(`🚀 SERVER is successfully listening on PORT: ${port}`);
+    });
   })
   .catch((err) => {
     console.error("❌ DATABASE Connection ERROR!!");
     console.log(err);
   });
-
-module.exports.handler = serverless(app);
